@@ -44,7 +44,7 @@ public class S3JavaSDK {
             deleteObjects(s3Client,b.getName());
             s3Client.deleteBucket(b.getName());
         }
-        String newBucketName = "akhils3sdkbukcet";
+        String newBucketName = "akhils3sdkbukcet12345";
         try {
             s3Client.createBucket(newBucketName);
             String policyFileName="encrypted-folder-policy";
@@ -100,7 +100,7 @@ public class S3JavaSDK {
             deleteObjects(s3Client,b.getName());
             s3Client.deleteBucket(b.getName());
         }
-        String newBucketName = "akhils3transitsdkbukcet";
+        String newBucketName = "akhils3transitsdkbukcet12345";
         try {
             s3Client.createBucket(newBucketName);
             final String fileName = "sometext.txt";
