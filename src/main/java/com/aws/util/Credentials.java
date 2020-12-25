@@ -1,17 +1,52 @@
 package com.aws.util;
 
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 /**
  * Created by Akhil on 23/07/2019.
  */
+@Component
 public class Credentials {
+    @Value("${amazon.access.key}")
+    private String awsAccessKey;
+    @Value("${amazon.access.secret-key}")
+    private String awsSecretKey;
+    @Value("${amazon.region}")
+    private String awsRegion;
+    @Value("${amazon.kms.keyarn}")
+    private String keyArn;
 
-    public static final String access_key_id= "AKIA5S4TWFG2MJLEZXXZ";
+    public String getAwsAccessKey() {
+        return awsAccessKey;
+    }
 
-    public static final String secret_access_key ="Syug4lURBHIOKlDOAbDbmLNeZk1Q1lm9PjGp5mkb";
+    public void setAwsAccessKey(String awsAccessKey) {
+        this.awsAccessKey = awsAccessKey;
+    }
 
-    public static final String region ="us-east-1";
+    public String getAwsSecretKey() {
+        return awsSecretKey;
+    }
 
-    public static final String keyArn="arn:aws:kms:us-east-1:933928249780:key/b6db4164-c83b-4df0-957d-8d9ab5f469cb";
+    public void setAwsSecretKey(String awsSecretKey) {
+        this.awsSecretKey = awsSecretKey;
+    }
 
+    public String getAwsRegion() {
+        return awsRegion;
+    }
+
+    public void setAwsRegion(String awsRegion) {
+        this.awsRegion = awsRegion;
+    }
+
+    public String getKeyArn() {
+        return keyArn;
+    }
+
+    public void setKeyArn(String keyArn) {
+        this.keyArn = keyArn;
+    }
 }

@@ -13,6 +13,7 @@ import com.amazonaws.services.s3.model.*;
 import com.aws.util.Credentials;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
@@ -30,14 +31,17 @@ import java.util.Map;
 @Component
 public class S3JavaSDK {
 
+    @Autowired
+    private Credentials credentials;
+
     final AwsCrypto awsCrypto= AwsCrypto.builder()
             .withCommitmentPolicy(CommitmentPolicy.RequireEncryptRequireDecrypt)
             .build();
 
     public void createAndPopulateSimpleBucket()  {
 
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials(Credentials.access_key_id, Credentials.secret_access_key);
-        AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(Credentials.region)
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials(credentials.getAwsAccessKey(),credentials.getAwsSecretKey());
+        AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(credentials.getAwsRegion())
                 .withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
         List<Bucket> buckets = s3Client.listBuckets();
         for (Bucket b:buckets) {
@@ -92,8 +96,8 @@ public class S3JavaSDK {
     }
 
     public void createAndTransitEncryptSimpleBucket() throws Exception {
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials(Credentials.access_key_id, Credentials.secret_access_key);
-        AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(Credentials.region)
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials(credentials.getAwsAccessKey(),credentials.getAwsSecretKey());
+        AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(credentials.getAwsRegion())
                 .withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
         List<Bucket> buckets = s3Client.listBuckets();
         for (Bucket b:buckets) {
@@ -122,7 +126,7 @@ public class S3JavaSDK {
     }
 
     public byte[] encryptDataUsingKMS(File file){
-        final KmsMasterKeyProvider keyProvider = KmsMasterKeyProvider.builder().buildStrict(Credentials.keyArn);
+        final KmsMasterKeyProvider keyProvider = KmsMasterKeyProvider.builder().buildStrict(credentials.getKeyArn());
         CryptoResult<byte[], KmsMasterKey> encryptResult=null;
         byte[] unencrypted;
         final Map<String, String> encryptionContext = Collections.singletonMap("ExampleContextKey", "ExampleContextValue");
@@ -138,7 +142,7 @@ public class S3JavaSDK {
     }
 
     public byte[] decryptDataUsingKMS(byte[] encrypted){
-        final KmsMasterKeyProvider keyProvider = KmsMasterKeyProvider.builder().buildStrict(Credentials.keyArn);
+        final KmsMasterKeyProvider keyProvider = KmsMasterKeyProvider.builder().buildStrict(credentials.getKeyArn());
         CryptoResult<byte[], KmsMasterKey> encryptResult=null;
         final Map<String, String> encryptionContext = Collections.singletonMap("ExampleContextKey", "ExampleContextValue");
         try {

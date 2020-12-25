@@ -9,7 +9,11 @@ import org.springframework.context.annotation.ComponentScan;
 public class MyApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MyApplication.class, args);
+        try {
+            SpringApplication.run(MyApplication.class, args);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }
