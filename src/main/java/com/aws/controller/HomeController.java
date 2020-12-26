@@ -19,13 +19,13 @@ public class HomeController {
 
     @GetMapping("/uploadFile1")
     public String uploadFile() {
-        s3JavaSDK.uploadFile("akhils3sdkbukcet12345","sometext");
+        s3JavaSDK.uploadFile("akhils3sdkbukcet123456","sometext.txt");
         return "File uploaded successfully";
     }
 
     @GetMapping("/uploadFile2")
     public String uploadFile2() {
-        s3JavaSDK.uploadFile("akhils3sdkbukcet12345","sometext2");
+        s3JavaSDK.uploadFile("akhils3sdkbukcet123456","sometext2.txt");
         return "File uploaded successfully";
     }
 
