@@ -39,10 +39,11 @@ public class S3JavaSDK {
             .build();
 
     public void createAndPopulateSimpleBucket()  {
-
         BasicAWSCredentials awsCreds = new BasicAWSCredentials(credentials.getAwsAccessKey(),credentials.getAwsSecretKey());
+
         AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(credentials.getAwsRegion())
                 .withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
+
         List<Bucket> buckets = s3Client.listBuckets();
         for (Bucket b:buckets) {
             deleteObjects(s3Client,b.getName());
@@ -58,10 +59,22 @@ public class S3JavaSDK {
             policy=policy.replace("bucketname",newBucketName);
             s3Client.setBucketPolicy(newBucketName,policy);
 
-            final String fileName = "sometext.txt";
-            File someText1 =readAndWriteToFile(fileName);
-            PutObjectRequest putRequest1 = new PutObjectRequest(newBucketName, "encrypted/" + fileName , someText1);
-            ObjectMetadata objectMetadata=new ObjectMetadata();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void uploadFile(String newBucketName, String fileName){
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials(credentials.getAwsAccessKey(),credentials.getAwsSecretKey());
+
+        AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(credentials.getAwsRegion())
+                .withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
+
+        File someText1 =readAndWriteToFile(fileName);
+        try {
+            PutObjectRequest putRequest1 = new PutObjectRequest(newBucketName, "encrypted/" + fileName, someText1);
+            ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setSSEAlgorithm(ObjectMetadata.AES_256_SERVER_SIDE_ENCRYPTION);
             putRequest1.setMetadata(objectMetadata);
             PutObjectResult response1 = s3Client.putObject(putRequest1);
@@ -70,7 +83,6 @@ public class S3JavaSDK {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     public File readAndWriteToFile(String fileName){

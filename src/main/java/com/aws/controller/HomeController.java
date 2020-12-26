@@ -17,6 +17,18 @@ public class HomeController {
         return "Bucket created successfully";
     }
 
+    @GetMapping("/uploadFile1")
+    public String uploadFile() {
+        s3JavaSDK.uploadFile("akhils3sdkbukcet12345","sometext");
+        return "File uploaded successfully";
+    }
+
+    @GetMapping("/uploadFile2")
+    public String uploadFile2() {
+        s3JavaSDK.uploadFile("akhils3sdkbukcet12345","sometext2");
+        return "File uploaded successfully";
+    }
+
     @GetMapping("/createBucketTransitEncrypt")
     public String createBucketTransitEncrypt() throws Exception {
         s3JavaSDK.createAndTransitEncryptSimpleBucket();
