@@ -1,7 +1,7 @@
 amazon:
   access:
-    key: AKIAQHJLPQ37NWWDHLB6
-    secret-key: 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
+    key: AKIAUKUS5RYZESNDS3XO
+    secret-key: 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
   region: us-east-1
   end-point:
     url: dynamodb.us-east-1.amazonaws.com
