@@ -1,9 +1,9 @@
 amazon:
   access:
-    key: AKIAVM54LY3AJKKLRLWW
-    secret-key: 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
+    key: AKIAXN6SGZPUXG6ZSC6A
+    secret-key: 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
   region: us-east-1
   end-point:
     url: dynamodb.us-east-1.amazonaws.com
   kms:
-    keyarn: arn:aws:kms:us-east-1:371372836544:key/56590b2b-e093-452b-bc25-9abcbafa4784
+    keyarn: arn:aws:kms:us-east-1:511005084649:key/53f1b3c0-7f9c-4e23-ad27-abd6fa224fa9
