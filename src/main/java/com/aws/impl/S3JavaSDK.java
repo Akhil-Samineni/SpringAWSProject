@@ -49,7 +49,7 @@ public class S3JavaSDK {
             deleteObjects(s3Client,b.getName());
             s3Client.deleteBucket(b.getName());
         }
-        String newBucketName = "akhils3sdkbukcet1234567";
+        String newBucketName = credentials.getBucketName();
         try {
             s3Client.createBucket(newBucketName);
             String policyFileName="encrypted-folder-policy";
@@ -111,12 +111,12 @@ public class S3JavaSDK {
         BasicAWSCredentials awsCreds = new BasicAWSCredentials(credentials.getAwsAccessKey(),credentials.getAwsSecretKey());
         AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(credentials.getAwsRegion())
                 .withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
-        List<Bucket> buckets = s3Client.listBuckets();
+        /*List<Bucket> buckets = s3Client.listBuckets();
         for (Bucket b:buckets) {
             deleteObjects(s3Client,b.getName());
             s3Client.deleteBucket(b.getName());
-        }
-        String newBucketName = "akhils3transitsdkbukcet1234567";
+        }*/
+        String newBucketName = credentials.getBucketTransitName();
         try {
             s3Client.createBucket(newBucketName);
             final String fileName = "sometext.txt";

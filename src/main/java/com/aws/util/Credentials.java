@@ -17,6 +17,13 @@ public class Credentials {
     private String awsRegion;
     @Value("${amazon.kms.keyarn}")
     private String keyArn;
+    @Value("${amazon.s3.bucketName}")
+    private String bucketName;
+    @Value("${amazon.s3.bucketTransitName}")
+    private String bucketTransitName;
+    @Value("${amazon.s3.accId}")
+    private String accId;
+
 
     public String getAwsAccessKey() {
         return awsAccessKey;
@@ -48,5 +55,29 @@ public class Credentials {
 
     public void setKeyArn(String keyArn) {
         this.keyArn = keyArn;
+    }
+
+    public String getBucketName() {
+        return bucketName;
+    }
+
+    public void setBucketName(String bucketName) {
+        this.bucketName = bucketName;
+    }
+
+    public String getBucketTransitName() {
+        return bucketTransitName;
+    }
+
+    public void setBucketTransitName(String bucketTransitName) {
+        this.bucketTransitName = bucketTransitName;
+    }
+
+    public String getAccId() {
+        return accId;
+    }
+
+    public void setAccId(String accId) {
+        this.accId = accId;
     }
 }
