@@ -1,13 +1,13 @@
 amazon:
   access:
-    key: AKIATROY27SOEUM2THKJ
-    secret-key: 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
+    key: AKIAWLKLKMTL4KUJGQEU
+    secret-key: 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
   region: us-east-1
   end-point:
     url: dynamodb.us-east-1.amazonaws.com
   kms:
-    keyarn: arn:aws:kms:us-east-1:243657276572:key/35f6c4a1-b133-4a1e-adc5-9fd77b95dee7
+    keyarn: arn:aws:kms:us-east-1:436634019031:key/05e1a01d-560c-48bc-a76a-c177119f40f3
   s3:
     bucketName: akhils3bucket12345
     bucketTransitName: akhils3transitbucket12345
-    accId: 243657276572
+    accId: 436634019031
