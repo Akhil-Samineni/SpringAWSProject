@@ -1,8 +1,16 @@
 package com.aws.util;
 
 
+/*import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagement;
+import com.amazonaws.services.simplesystemsmanagement.AWSSimpleSystemsManagementClientBuilder;
+import com.amazonaws.services.simplesystemsmanagement.model.GetParameterRequest;
+import com.amazonaws.services.simplesystemsmanagement.model.GetParameterResult;
+import com.amazonaws.services.simplesystemsmanagement.model.GetParametersResult;*/
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+
 
 /**
  * Created by Akhil on 23/07/2019.
@@ -24,7 +32,18 @@ public class Credentials {
     @Value("${amazon.s3.accId}")
     private String accId;
 
+    /*public Credentials(){
 
+    }
+    @PostConstruct
+    public void init(){
+        AWSSimpleSystemsManagement ssmClient = AWSSimpleSystemsManagementClientBuilder
+                .standard().withRegion("us-east-1").build();
+        GetParameterRequest parameterRequest= new GetParameterRequest().withName("");
+        GetParameterResult parameterResult= new GetParameterResult();
+        parameterResult = ssmClient.getParameter(parameterRequest);
+
+    }*/
     public String getAwsAccessKey() {
         return awsAccessKey;
     }

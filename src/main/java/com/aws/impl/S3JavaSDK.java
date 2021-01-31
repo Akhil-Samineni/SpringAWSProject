@@ -41,8 +41,10 @@ public class S3JavaSDK {
     public void createAndPopulateSimpleBucket()  {
         BasicAWSCredentials awsCreds = new BasicAWSCredentials(credentials.getAwsAccessKey(),credentials.getAwsSecretKey());
 
+        /*AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(credentials.getAwsRegion())
+                .withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();*/
         AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(credentials.getAwsRegion())
-                .withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
+                .build();
 
         List<Bucket> buckets = s3Client.listBuckets();
         for (Bucket b:buckets) {
@@ -68,8 +70,10 @@ public class S3JavaSDK {
     public void uploadFile(String newBucketName, String fileName){
         BasicAWSCredentials awsCreds = new BasicAWSCredentials(credentials.getAwsAccessKey(),credentials.getAwsSecretKey());
 
+        /*AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(credentials.getAwsRegion())
+                .withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();*/
         AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(credentials.getAwsRegion())
-                .withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
+                .build();
 
         File someText1 =readAndWriteToFile(fileName);
         try {
@@ -109,8 +113,10 @@ public class S3JavaSDK {
 
     public void createAndTransitEncryptSimpleBucket() throws Exception {
         BasicAWSCredentials awsCreds = new BasicAWSCredentials(credentials.getAwsAccessKey(),credentials.getAwsSecretKey());
+        /*AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(credentials.getAwsRegion())
+                .withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();*/
         AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(credentials.getAwsRegion())
-                .withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
+                .build();
         /*List<Bucket> buckets = s3Client.listBuckets();
         for (Bucket b:buckets) {
             deleteObjects(s3Client,b.getName());
